@@ -1,3 +1,5 @@
+FROM amigadev/adtools:latest as adtools-image
+
 FROM phusion/baseimage:master
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
@@ -5,41 +7,75 @@ LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
+COPY --from=adtools-image /opt/ppc-amigaos /opt/ppc-amigaos
+
+ENV PATH ${PATH}:/opt/ppc-amigaos/bin
+
+# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61; \
+#     echo "deb http://dl.bintray.com/sba1/adtools-deb /" | tee -a /etc/apt/sources.list;
+
 RUN apt-get update && apt-get -y install \
-    dpkg-dev g++-8 gcc-8 libc6-dev libc-dev make \
-    autoconf \
-    automake \
-    bison \
-    cmake \
+    # dpkg-dev g++-8 gcc-8 libc6-dev libc-dev make \
+    # autoconf \
+    # automake \
+    # bison \
+    # build-essential \
+    # cmake \
     cvs \
-    flex \
+    # flex \
     git \
     lhasa \
     libgmp-dev \
     libisl-dev \
+    # libmpfr6 \
     libmpc-dev \
     libmpfr-dev \
-    libtool \
+    # libtool \
     mc \
     mercurial \
-    python2.7 \
-    scons \
+    # python2.7 \
+    # scons \
     subversion \
-    wget;
-
-RUN mkdir -p /opt/adtools; \
-    mkdir -p /opt/code; \
-    mkdir -p /opt/sdk;
+    wget ;
 
 
-# Install adtools
-RUN cd /opt/adtools; \
-    git clone https://github.com/sba1/adtools .; \
-    git submodule init; \
-    git submodule update; \
-    gild/bin/gild clone; \
-    gild/bin/gild checkout binutils 2.23.2; \
-    gild/bin/gild checkout gcc 8;
+# ENV AS=/opt/ppc-amigaos/bin/ppc-amigaos-as \
+#     LD=/opt/ppc-amigaos/bin/ppc-amigaos-ld \
+#     AR=/opt/ppc-amigaos/bin/ppc-amigaos-ar \
+#     CC=/opt/ppc-amigaos/bin/ppc-amigaos-gcc \
+#     CXX=/opt/ppc-amigaos/bin/ppc-amigaos-g++ \
+#     RANLIB=/opt/ppc-amigaos/bin/ppc-amigaos-ranlib
+
+RUN ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-as /usr/bin/as && \
+    ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-ar /usr/bin/ar && \
+    ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-ld /usr/bin/ld && \
+    ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-gcc /usr/bin/gcc && \
+    ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-g++ /usr/bin/g++ && \
+    ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-ranlib /usr/bin/ranlib;
+
+# RUN apt update && apt install \
+#         python-pip \
+#         python3-pip; \
+#     pip install argcomplete; \
+#     pip3 install argcomplete; 
+
+# RUN mkdir -p /opt/adtools; \
+#     mkdir -p /opt/code; \
+#     mkdir -p /opt/sdk;
+
+# Compile adtools
+# RUN cd /opt/adtools; \
+#     git config --global user.email "walkero@gmail.com"; \
+#     git config --global user.name "George Sokianos"; \
+#     git clone https://github.com/sba1/adtools .; \
+#     git submodule init; \
+#     git submodule update;
+
+# RUN gild/bin/gild clone; \
+#     gild/bin/gild checkout binutils 2.23.2; \
+#     gild/bin/gild checkout gcc 8;
+
+# RUN make -C native-build gcc-cross CROSS_PREFIX=/usr/local/amiga -j3
 
 #ENV PATH="$VBCC/bin:$PATH"
 
