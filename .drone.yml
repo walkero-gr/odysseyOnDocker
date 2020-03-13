@@ -1,0 +1,21 @@
+---
+kind: pipeline
+name: build-images
+
+steps:
+- name: build-image-latest
+  image: plugins/docker
+  settings:
+    repo: walkero/odysseyondocker
+    tags:
+      - "latest"
+    cache_from:
+      - walkero/odysseyondocker:latest
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+  when:
+    event:
+      exclude:
+        - tag
