@@ -101,14 +101,14 @@ ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
 ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
-# RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
-#     curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
-#     cd /tmp; \
-#     lhasa -xfq2 MUI-5.0.lha; \
-#     lhasa -xfq2 MUI-5.0-contrib.lha; \
-#     mv SDK/MUI /opt/sdk/MUI_5.0;
+RUN curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+    cd /tmp; \
+    lhasa -xfq2 MUI-5.0.lha; \
+    lhasa -xfq2 MUI-5.0-contrib.lha; \
+    mv SDK/MUI /opt/sdk/MUI_5.0;
 
-# ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
+ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install GL4ES SDK
 # RUN curl -fSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \

@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - adtools from amigadev/adtools:latest docker image
 - drone CI file to auto deployment after each push to the repo
 - README file with information about how this image can be used
+- Added MUI 5.0-2019R4 SDK
 
 
 
