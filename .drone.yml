@@ -15,7 +15,10 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-  when:
+  trigger:
+    branch:
+      include:
+      - master
     event:
-      branch: master
-      event: push
+      include:
+      - push
