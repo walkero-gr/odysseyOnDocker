@@ -110,6 +110,14 @@ RUN curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
+# Install AMISSL SDK
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+    cd /tmp; \
+    lhasa -xfq2 AmiSSL.lha; \
+    mv AmiSSL/Developer /opt/sdk/AmiSSL;
+
+ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
+
 # Install GL4ES SDK
 # RUN curl -fSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \
 #     cd /tmp; \

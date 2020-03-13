@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - drone CI file to auto deployment after each push to the repo
 - README file with information about how this image can be used
 - Added MUI 5.0-2019R4 SDK
+- Added AmiSSL 4.4 SDK
 
 
 
