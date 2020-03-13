@@ -15,12 +15,13 @@ ENV PATH ${PATH}:/opt/ppc-amigaos/bin
 #     echo "deb http://dl.bintray.com/sba1/adtools-deb /" | tee -a /etc/apt/sources.list;
 
 RUN apt-get update && apt-get -y install \
-    # dpkg-dev g++-8 gcc-8 libc6-dev libc-dev make \
+    # dpkg-dev g++-8 gcc-8 libc6-dev libc-dev \ 
+    make \
     # autoconf \
     # automake \
     # bison \
     # build-essential \
-    # cmake \
+    cmake \
     cvs \
     # flex \
     git \
@@ -79,7 +80,7 @@ RUN mkdir -p /opt/sdk/ppc-amigaos; \
 #ENV PATH="$VBCC/bin:$PATH"
 
 # Install AmigaOS 4 SDK
-RUN curl -fkSL "http://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
+RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
     cd /tmp; \
     lhasa -xfq2 AmigaOS4-SDK.lha; \
     cd SDK_Install; \
