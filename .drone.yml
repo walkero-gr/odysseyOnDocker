@@ -17,5 +17,5 @@ steps:
       from_secret: DOCKERHUB_PASSWORD
   when:
     event:
-      exclude:
-        - tag
+      branch: master
+      event: push
