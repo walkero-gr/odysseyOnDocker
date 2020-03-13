@@ -10,6 +10,7 @@ The **odysseyOnDocker:latest** image contains the following:
 |-------------------|--------------------------------|-----------------------------------|
 | gcc               | 8.3.0 (adtools build 8.3.0)    | https://github.com/AmigaPorts/adtools
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
+| MUI 5.x dev       | 5.0-2019R4                     | http://muidev.de/downloads
 
 ## How to create a docker container
 
@@ -53,6 +54,7 @@ The **odysseyondocker:latest** image has the following ENV variables set:
 * **AOS4_NET_INC**: /opt/sdk/ppc-amigaos/Include/netinclude
 * **AOS4_NLIB_INC**: /opt/sdk/ppc-amigaos/newlib/include
 * **AOS4_CLIB_INC**: /opt/sdk/ppc-amigaos/clib2/include
+* **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash
