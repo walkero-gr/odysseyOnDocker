@@ -39,12 +39,12 @@ RUN apt-get update && apt-get -y install \
     wget ;
 
 
-# ENV AS=/opt/ppc-amigaos/bin/ppc-amigaos-as \
-#     LD=/opt/ppc-amigaos/bin/ppc-amigaos-ld \
-#     AR=/opt/ppc-amigaos/bin/ppc-amigaos-ar \
-#     CC=/opt/ppc-amigaos/bin/ppc-amigaos-gcc \
-#     CXX=/opt/ppc-amigaos/bin/ppc-amigaos-g++ \
-#     RANLIB=/opt/ppc-amigaos/bin/ppc-amigaos-ranlib
+ENV AS=/opt/ppc-amigaos/bin/ppc-amigaos-as \
+    LD=/opt/ppc-amigaos/bin/ppc-amigaos-ld \
+    AR=/opt/ppc-amigaos/bin/ppc-amigaos-ar \
+    CC=/opt/ppc-amigaos/bin/ppc-amigaos-gcc \
+    CXX=/opt/ppc-amigaos/bin/ppc-amigaos-g++ \
+    RANLIB=/opt/ppc-amigaos/bin/ppc-amigaos-ranlib
 
 RUN ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-as /usr/bin/as && \
     ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-ar /usr/bin/ar && \
@@ -59,9 +59,8 @@ RUN ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-as /usr/bin/as && \
 #     pip install argcomplete; \
 #     pip3 install argcomplete; 
 
-# RUN mkdir -p /opt/adtools; \
-#     mkdir -p /opt/code; \
-#     mkdir -p /opt/sdk;
+RUN mkdir -p /opt/sdk/ppc-amigaos; \
+    mkdir -p /opt/code;
 
 # Compile adtools
 # RUN cd /opt/adtools; \
@@ -80,20 +79,25 @@ RUN ln -sf /opt/ppc-amigaos/bin/ppc-amigaos-as /usr/bin/as && \
 #ENV PATH="$VBCC/bin:$PATH"
 
 # Install AmigaOS 4 SDK
-# RUN curl -fkSL "http://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
-#     cd /tmp; \
-#     lhasa -xfq2 AmigaOS4-SDK.lha; \
-#     cd SDK_Install; \
-#     lhasa -xfq2 newlib*.lha; \
-#     lhasa -xfq2 base.lha; \
-#     mv Documentation /opt/sdk/ppc-amigaos; \
-#     mv Examples /opt/sdk/ppc-amigaos; \
-#     mv Include /opt/sdk/ppc-amigaos; \
-#     mv newlib /opt/sdk/ppc-amigaos;
+RUN curl -fkSL "http://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
+    cd /tmp; \
+    lhasa -xfq2 AmigaOS4-SDK.lha; \
+    cd SDK_Install; \
+    lhasa -xfq2 clib2*.lha; \
+    lhasa -xfq2 newlib*.lha; \
+    lhasa -xfq2 base.lha; \
+    mv Documentation /opt/sdk/ppc-amigaos; \
+    mv Examples /opt/sdk/ppc-amigaos; \
+    mv Include /opt/sdk/ppc-amigaos; \
+    mv newlib /opt/sdk/ppc-amigaos; \
+    mv clib2 /opt/sdk/ppc-amigaos; \
+    rm -rf /opt/ppc-amigaos/ppc-amigaos/SDK; \
+    ln -s /opt/sdk/ppc-amigaos/ /opt/ppc-amigaos/ppc-amigaos/SDK;
 
-# ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
-# ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
-# ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
+ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
+ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
+ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
+ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
 # RUN curl -fSL "http://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
