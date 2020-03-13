@@ -1,7 +1,7 @@
 [![Build Status](https://drone-gh.intercube.gr/api/badges/walkero-gr/odysseyOnDocker/status.svg)](https://drone-gh.intercube.gr/walkero-gr/odysseyOnDocker)
 
 # odysseyOnDocker
-This is a docker images with GCC compiler for cross compiling software for AmigaOS 4. It is based on Ubuntu and has everything needed (ggc compiler, SDKs, libraries) for cross compiling your applications. It's target is to be an out of box solution for compiling Odyssey browser for AmigaOS 4, but will be able to be used for other applications as well.
+This is a docker image with GCC compiler for cross compiling software for AmigaOS 4. It is based on Ubuntu and has everything needed (ggc compiler, SDKs, libraries) for cross compiling your applications. It's target is to be an out of box solution for compiling Odyssey browser for AmigaOS 4, but will be able to be used for other applications as well.
 
 ## PPC development image
 The **odysseyOnDocker:latest** image contains the following:
