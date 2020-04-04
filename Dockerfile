@@ -87,11 +87,11 @@ RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_regi
     lhasa -xfq2 clib2*.lha; \
     lhasa -xfq2 newlib*.lha; \
     lhasa -xfq2 base.lha; \
-    mv Documentation /opt/sdk/ppc-amigaos; \
-    mv Examples /opt/sdk/ppc-amigaos; \
-    mv Include /opt/sdk/ppc-amigaos; \
-    mv newlib /opt/sdk/ppc-amigaos; \
-    mv clib2 /opt/sdk/ppc-amigaos; \
+    mv ./Documentation /opt/sdk/ppc-amigaos; \
+    mv ./Examples /opt/sdk/ppc-amigaos; \
+    mv ./Include /opt/sdk/ppc-amigaos; \
+    mv ./newlib /opt/sdk/ppc-amigaos; \
+    mv ./clib2 /opt/sdk/ppc-amigaos; \
     rm -rf /opt/ppc-amigaos/ppc-amigaos/SDK; \
     ln -s /opt/sdk/ppc-amigaos/ /opt/ppc-amigaos/ppc-amigaos/SDK;
 
@@ -106,15 +106,15 @@ RUN curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4
     cd /tmp; \
     lhasa -xfq2 MUI-5.0.lha; \
     lhasa -xfq2 MUI-5.0-contrib.lha; \
-    mv SDK/MUI /opt/sdk/MUI_5.0;
+    mv ./SDK/MUI /opt/sdk/MUI_5.0;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lhasa -xfq2 AmiSSL.lha; \
-    mv AmiSSL/Developer /opt/sdk/AmiSSL;
+    mv ./AmiSSL/Developer /opt/sdk/AmiSSL;
 
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 

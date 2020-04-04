@@ -11,7 +11,7 @@ The **odysseyOnDocker:latest** image contains the following:
 | gcc               | 8.3.0 (adtools build 8.3.0)    | https://github.com/AmigaPorts/adtools
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4                     | http://muidev.de/downloads
-| AmiSSL SDK        | 4.4                            | https://github.com/jens-maus/amissl/releases/tag/4.4
+| AmiSSL SDK        | 4.5                            | https://github.com/jens-maus/amissl/releases/tag/4.5
 
 ## How to create a docker container
 
