@@ -25,7 +25,6 @@ RUN apt-get update && apt-get -y install \
     cvs \
     # flex \
     git \
-    lhasa \
     libgmp-dev \
     libisl-dev \
     # libmpfr6 \
@@ -39,6 +38,11 @@ RUN apt-get update && apt-get -y install \
     subversion \
     wget ;
 
+# Install lha 1.14i
+RUN curl -fSL "https://launchpad.net/ubuntu/+archive/primary/+files/lha_1.14i-10.3_amd64.deb" -o /tmp/lha.deb; \
+    cd /tmp; \
+    dpkg -i lha.deb; \
+    rm -rf /tmp/*;
 
 ENV AS=/opt/ppc-amigaos/bin/ppc-amigaos-as \
     LD=/opt/ppc-amigaos/bin/ppc-amigaos-ld \
@@ -77,16 +81,14 @@ RUN mkdir -p /opt/sdk/ppc-amigaos; \
 
 # RUN make -C native-build gcc-cross CROSS_PREFIX=/usr/local/amiga -j3
 
-#ENV PATH="$VBCC/bin:$PATH"
-
 # Install AmigaOS 4 SDK
 RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
     cd /tmp; \
-    lhasa -xfq2 AmigaOS4-SDK.lha; \
+    lha -xfq2 AmigaOS4-SDK.lha; \
     cd SDK_Install; \
-    lhasa -xfq2 clib2*.lha; \
-    lhasa -xfq2 newlib*.lha; \
-    lhasa -xfq2 base.lha; \
+    lha -xfq2 clib2*.lha; \
+    lha -xfq2 newlib*.lha; \
+    lha -xfq2 base.lha; \
     mv Documentation /opt/sdk/ppc-amigaos; \
     mv Examples /opt/sdk/ppc-amigaos; \
     mv Include /opt/sdk/ppc-amigaos; \
@@ -104,8 +106,8 @@ ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 RUN curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4.lha" -o /tmp/MUI-5.0.lha; \
     curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
-    lhasa -xfq2 MUI-5.0.lha; \
-    lhasa -xfq2 MUI-5.0-contrib.lha; \
+    lha -xfq2 MUI-5.0.lha; \
+    lha -xfq2 MUI-5.0-contrib.lha; \
     mv SDK/MUI /opt/sdk/MUI_5.0;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
@@ -113,7 +115,7 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 # Install AMISSL SDK
 RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
-    lhasa -xfq2 AmiSSL.lha; \
+    lha -xfq2 AmiSSL.lha; \
     mv AmiSSL/Developer /opt/sdk/AmiSSL;
 
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
@@ -121,7 +123,7 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 # Install GL4ES SDK
 # RUN curl -fSL "https://github.com/kas1e/GL4ES-SDK/releases/download/1.1/gl4es_sdk-1.1.lha" -o /tmp/gl4es_sdk-1.1.lha; \
 #     cd /tmp; \
-#     lhasa -xfq2 gl4es_sdk-1.1.lha; \
+#     lha -xfq2 gl4es_sdk-1.1.lha; \
 #     mv SDK/local/common /opt/sdk/GL4ES;
 
 # ENV GL4ES_INC="/opt/sdk/GL4ES/include"
