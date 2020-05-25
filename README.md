@@ -3,6 +3,8 @@
 # odysseyOnDocker
 This is a docker image with GCC compiler for cross compiling software for AmigaOS 4. It is based on Ubuntu and has everything needed (ggc compiler, SDKs, libraries) for cross compiling your applications. It's target is to be an out of box solution for compiling Odyssey browser for AmigaOS 4, but will be able to be used for other applications as well.
 
+The purpose of this docker image is to have Odyssey browser (https://github.com/kas1e/Odyssey) compile for AmigaOS 4, and then be able other apps to be compiled as well.
+
 ## PPC development image
 The **odysseyOnDocker:latest** image contains the following:
 
