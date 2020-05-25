@@ -37,7 +37,8 @@ RUN apt-get update && apt-get -y install \
     # python2.7 \
     # scons \
     subversion \
-    wget ;
+    wget ; \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 
 ENV AS=/opt/ppc-amigaos/bin/ppc-amigaos-as \
@@ -93,7 +94,8 @@ RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_regi
     mv newlib /opt/sdk/ppc-amigaos; \
     mv clib2 /opt/sdk/ppc-amigaos; \
     rm -rf /opt/ppc-amigaos/ppc-amigaos/SDK; \
-    ln -s /opt/sdk/ppc-amigaos/ /opt/ppc-amigaos/ppc-amigaos/SDK;
+    ln -s /opt/sdk/ppc-amigaos/ /opt/ppc-amigaos/ppc-amigaos/SDK; \
+    rm -rf /tmp/*;
 
 ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
 ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
@@ -106,7 +108,8 @@ RUN curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4
     cd /tmp; \
     lhasa -xfq2 MUI-5.0.lha; \
     lhasa -xfq2 MUI-5.0-contrib.lha; \
-    mv SDK/MUI /opt/sdk/MUI_5.0;
+    mv SDK/MUI /opt/sdk/MUI_5.0; \
+    rm -rf /tmp/*;
 
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
@@ -114,7 +117,8 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.4/AmiSSL-4.4.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lhasa -xfq2 AmiSSL.lha; \
-    mv AmiSSL/Developer /opt/sdk/AmiSSL;
+    mv AmiSSL/Developer /opt/sdk/AmiSSL; \
+    rm -rf /tmp/*;
 
 ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 
