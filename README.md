@@ -1,7 +1,9 @@
 [![Build Status](https://drone-gh.intercube.gr/api/badges/walkero-gr/odysseyOnDocker/status.svg)](https://drone-gh.intercube.gr/walkero-gr/odysseyOnDocker)
 
 # odysseyOnDocker
-This is a docker images with GCC compiler for cross compiling software for AmigaOS 4. It is based on Ubuntu and has everything needed (ggc compiler, SDKs, libraries) for cross compiling your applications. It's target is to be an out of box solution for compiling Odyssey browser for AmigaOS 4, but will be able to be used for other applications as well.
+This is a docker image with GCC compiler for cross compiling software for AmigaOS 4. It is based on Ubuntu and has everything needed (ggc compiler, SDKs, libraries) for cross compiling your applications. It's target is to be an out of box solution for compiling Odyssey browser for AmigaOS 4, but will be able to be used for other applications as well.
+
+The purpose of this docker image is to have Odyssey browser (https://github.com/kas1e/Odyssey) compile for AmigaOS 4, and then be able other apps to be compiled as well.
 
 ## PPC development image
 The **odysseyOnDocker:latest** image contains the following:
@@ -11,7 +13,7 @@ The **odysseyOnDocker:latest** image contains the following:
 | gcc               | 8.3.0 (adtools build 8.3.0)    | https://github.com/AmigaPorts/adtools
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4                     | http://muidev.de/downloads
-| AmiSSL SDK        | 4.4                            | https://github.com/jens-maus/amissl/releases/tag/4.4
+| AmiSSL SDK        | 4.5                            | https://github.com/jens-maus/amissl/releases/tag/4.5
 | lha               | 1.14i                          | https://launchpad.net/ubuntu/+source/lha
 
 ## How to create a docker container
