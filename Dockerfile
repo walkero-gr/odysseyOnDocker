@@ -95,7 +95,7 @@ RUN curl -fkSL "https://www.hyperion-entertainment.biz/index.php?option=com_regi
     lha -xfq2 base.lha; \
     mv ./Documentation /opt/sdk/ppc-amigaos; \
     mv ./Examples /opt/sdk/ppc-amigaos; \
-    mv ./Include /opt/sdk/ppc-amigaos; \
+    mv ./Include /opt/sdk/ppc-amigaos/include; \
     mv ./newlib /opt/sdk/ppc-amigaos; \
     mv ./clib2 /opt/sdk/ppc-amigaos; \
     rm -rf /opt/ppc-amigaos/ppc-amigaos/SDK; \
