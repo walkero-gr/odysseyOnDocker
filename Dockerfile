@@ -19,12 +19,13 @@ RUN apt-get update && apt-get -y install \
     make \
     # autoconf \
     # automake \
-    # bison \
+    bison \
     # build-essential \
     cmake \
     cvs \
-    # flex \
+    flex \
     git \
+    gperf \
     libgmp-dev \
     libisl-dev \
     # libmpfr6 \
@@ -33,8 +34,10 @@ RUN apt-get update && apt-get -y install \
     # libtool \
     mc \
     mercurial \
+    pkg-config \
     # python2.7 \
     # scons \
+    ruby \
     subversion \
     wget ; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
