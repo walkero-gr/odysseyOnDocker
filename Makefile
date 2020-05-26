@@ -1,12 +1,12 @@
 -include env_make
 
-REPO ?= walkero/odyssey-on-docker
-TAG ?= 1.0
+REPO ?= walkero/odysseyondocker
+TAG ?= latest
 VOLUMES ?= -v "${PWD}/code":/opt/code
 WORKSPACE ?= -w /opt/code
-NAME ?= odyssey-on-docker
+NAME ?= odysseyondocker
 
-.PHONY: build buildnc buildlatest shell push pushlatest logs clean release
+.PHONY: build buildnc shell push logs clean release
 
 default: build
 
@@ -16,17 +16,11 @@ build:
 buildnc:
 	docker build --no-cache -t $(REPO):$(TAG) .
 
-buildlatest:
-	docker build --no-cache -t $(REPO):latest .
-
 shell:
 	docker run -it --rm --name $(NAME) $(VOLUMES) $(WORKSPACE) $(REPO):$(TAG) /bin/bash
 
 push:
 	docker push $(REPO):$(TAG)
-
-pushlatest:
-	docker push $(REPO):latest
 
 logs:
 	docker logs $(NAME)
@@ -34,4 +28,4 @@ logs:
 clean:
 	-docker rm -f $(NAME)
 
-release: buildnc push buildlatest pushlatest
+release: buildnc push
