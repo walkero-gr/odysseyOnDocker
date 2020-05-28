@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2020-05-28
+### Added
+- Added git branch name to bash prompt
+
 ## odysseyOnDocker - 2020-05-25
 ### Changed
 - Optimised image layers to reduce the size by almost 40%
