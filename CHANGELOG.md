@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2020-06-09
+### Changed
+- Updated AmiSSL SDK to latest released version 4.6
+
 ## odysseyOnDocker - 2020-05-28
 ### Added
 - Added git branch name to bash prompt

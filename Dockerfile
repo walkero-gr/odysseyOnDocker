@@ -119,7 +119,7 @@ RUN curl -fSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2019R4
 ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # Install AMISSL SDK
-RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.5/AmiSSL-4.5.lha" -o /tmp/AmiSSL.lha; \
+RUN curl -fSL "https://github.com/jens-maus/amissl/releases/download/4.6/AmiSSL-4.6.lha" -o /tmp/AmiSSL.lha; \
     cd /tmp; \
     lha -xfq2 AmiSSL.lha; \
     mv ./AmiSSL/Developer /opt/sdk/AmiSSL; \
