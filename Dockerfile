@@ -139,7 +139,8 @@ ENV AMISSL_INC="/opt/sdk/AmiSSL/include"
 RUN curl -fsSL "https://github.com/AmigaPorts/SDL/releases/download/v2.0.12-rc2-amigaos4/SDL2.lha" -o /tmp/SDL2.lha; \
     cd /tmp; \
     lha -xfq2 SDL2.lha; \
-    mv SDL2/SDK/local/newlib /opt/sdk/SDL2;
+    mv SDL2/SDK/local/newlib /opt/sdk/SDL2; \
+    rm -rf /tmp/*;
 
 ENV SDL2_INC="/opt/sdk/SDL2/include"
 
