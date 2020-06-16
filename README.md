@@ -14,6 +14,7 @@ The **odysseyOnDocker:latest** image contains the following:
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2019R4                     | http://muidev.de/downloads
 | AmiSSL SDK        | 4.6                            | https://github.com/jens-maus/amissl/releases/tag/4.6
+| SDL SDK           | 2.0.12RC2                      | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-rc2-amigaos4
 | lha               | 1.14i                          | https://launchpad.net/ubuntu/+source/lha
 
 ## How to create a docker container
@@ -60,6 +61,7 @@ The **odysseyondocker:latest** image has the following ENV variables set:
 * **AOS4_CLIB_INC**: /opt/sdk/ppc-amigaos/clib2/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
+* **SDL2_INC**: /opt/sdk/SDL2/include
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash

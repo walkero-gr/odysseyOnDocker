@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2020-06-16
+### Added
+- Added SDL 2 SDK version 2.0.12 release candidate 2 for AmigaOS 4
+
 ## odysseyOnDocker - 2020-06-09
 ### Changed
 - Updated AmiSSL SDK to latest released version 4.6
