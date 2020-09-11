@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2020-09-11
+### Changed
+- Updated gcc to 8.4.0
+- Updated MUI SDK to v5.0-2020R1
+- Updated SDL 2 SDK to 2.0.12 stable version
+- Now the image is based on walkero/docker4amigavbcc:latest-base because of common parts
+- Added amidev user and group, with ID 1000
+
 ## odysseyOnDocker - 2020-06-16
 ### Added
 - Added SDL 2 SDK version 2.0.12 release candidate 2 for AmigaOS 4

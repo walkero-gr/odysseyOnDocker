@@ -10,11 +10,11 @@ The **odysseyOnDocker:latest** image contains the following:
 
 | app               | version                        | source
 |-------------------|--------------------------------|-----------------------------------|
-| gcc               | 8.3.0 (adtools build 8.3.0)    | https://github.com/AmigaPorts/adtools
+| gcc               | 8.4.0 (adtools build 8.4.0)    | https://github.com/AmigaPorts/adtools
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
-| MUI 5.x dev       | 5.0-2019R4                     | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2020R1                     | http://muidev.de/downloads
 | AmiSSL SDK        | 4.6                            | https://github.com/jens-maus/amissl/releases/tag/4.6
-| SDL SDK           | 2.0.12RC2                      | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-rc2-amigaos4
+| SDL SDK           | 2.0.12                         | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-rc2-amigaos4
 | lha               | 1.14i                          | https://launchpad.net/ubuntu/+source/lha
 
 ## How to create a docker container
@@ -43,7 +43,7 @@ docker-compose up -d
 docker-compose odysseyondocker exec bash
 ```
 
-To compile your project you have to get into the container, inside the */opt/code/projectname* folder, which is shared with the host machine, and run the compilation.
+To compile your project you have to get into the container, inside the */opt/code/projectname* folder, which is shared with the host machine.
 
 ## How to set your own include paths
 
@@ -79,6 +79,29 @@ services:
     volumes:
       - './code:/opt/code'
       - './ext_sdk:/opt/ext_sdk'
+```
+
+### amidev user
+amidev user has ID 1000. Using this user inside the container helps your files to have the same permissions with the user you have on the host machine, so both sides have full access to the files. To change to amidev user inside the container you can `su amidev`. 
+
+I recommend to use VSCode with [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. You can use that extension to connect on the running VBCC container. If you want automatically to set the extensions, set the user and other configuration for each container, after you attach to it select from action menu (F1) the "Remote-Containers: Open Container Configuration FIle" and add the configuration based on your preference. 
+
+Below is my own example, with some really useful extensions:
+```json
+{
+	"extensions": [
+		"donjayamanne.githistory",
+		"eamodio.gitlens",
+		"EditorConfig.EditorConfig",
+		"Gruntfuggly.todo-tree",
+		"ms-vscode.cpptools",
+		"patricklee.vsnotes",
+		"prb28.amiga-assembly",
+		"SanaAjani.taskrunnercode"
+	],
+	"workspaceFolder": "/opt/code",
+	"remoteUser": "amidev"
+}
 ```
 
 ### Demo code
