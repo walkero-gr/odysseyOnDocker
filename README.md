@@ -14,8 +14,10 @@ The **odysseyOnDocker:latest** image contains the following:
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2020R1                     | http://muidev.de/downloads
 | AmiSSL SDK        | 4.6                            | https://github.com/jens-maus/amissl/releases/tag/4.6
-| SDL SDK           | 2.0.12                         | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-rc2-amigaos4
-| lha               | 1.14i                          | https://launchpad.net/ubuntu/+source/lha
+| SDL SDK           | 1.2.16-rc1                     | https://github.com/AmigaPorts/SDL/releases/tag/v1.2.16-rc1-amigaos4
+| SDL 2 SDK         | 2.0.12                         | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-amigaos4
+| FlexCat           | 2.18                           | https://github.com/adtools/flexcat/releases/tag/2.18
+| lha               | v2 PMA                         | https://github.com/jca02266/lha.git
 
 ## How to create a docker container
 
@@ -61,7 +63,10 @@ The **odysseyondocker:latest** image has the following ENV variables set:
 * **AOS4_CLIB_INC**: /opt/sdk/ppc-amigaos/clib2/include
 * **MUI50_INC**: /opt/sdk/MUI_5.0/C/include
 * **AMISSL_INC**: /opt/sdk/AmiSSL/include
+* **SDL_INC**: /opt/sdk/SDL/include
+* **SDL_LIB**: /opt/sdk/SDL/lib
 * **SDL2_INC**: /opt/sdk/SDL2/include
+* **SDL2_LIB**: /opt/sdk/SDL2/lib
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash

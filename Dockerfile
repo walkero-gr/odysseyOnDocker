@@ -94,10 +94,10 @@ RUN curl -fskSL "https://www.hyperion-entertainment.biz/index.php?option=com_reg
     ln -s /opt/sdk/ppc-amigaos/ $APPC/ppc-amigaos/SDK; \
     rm -rf /tmp/*;
 
-ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h"
-ENV AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude"
-ENV AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include"
-ENV AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
+ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h" \
+    AOS4_NET_INC="/opt/sdk/ppc-amigaos/Include/netinclude" \
+    AOS4_NLIB_INC="/opt/sdk/ppc-amigaos/newlib/include" \
+    AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
 RUN curl -fsSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R1-os4.lha" -o /tmp/MUI-5.0.lha; \
@@ -118,6 +118,16 @@ ENV MUI50_INC="/opt/sdk/MUI_5.0/C/include"
 
 # ENV GL4ES_INC="/opt/sdk/GL4ES/include"
 
+# Install SDL SDK
+RUN curl -fsSL "https://github.com/AmigaPorts/SDL/releases/download/v1.2.16-rc1-amigaos4/SDL.lha" -o /tmp/SDL.lha; \
+    cd /tmp; \
+    lha -xfq2 SDL.lha; \
+    mv ./SDL/SDK/local/newlib /opt/sdk/SDL; \
+    rm -rf /tmp/*;
+
+ENV SDL_INC="/opt/sdk/SDL/include" \
+    SDL_LIB="/opt/sdk/SDL/lib"
+
 # Install SDL 2 SDK
 RUN curl -fsSL "https://github.com/AmigaPorts/SDL/releases/download/v2.0.12-amigaos4/SDL2.lha" -o /tmp/SDL2.lha; \
     cd /tmp; \
@@ -125,7 +135,8 @@ RUN curl -fsSL "https://github.com/AmigaPorts/SDL/releases/download/v2.0.12-amig
     mv ./SDL2/SDK/local/newlib /opt/sdk/SDL2; \
     rm -rf /tmp/*;
 
-ENV SDL2_INC="/opt/sdk/SDL2/include/SDL2"
+ENV SDL2_INC="/opt/sdk/SDL2/include" \
+    SDL2_LIB="/opt/sdk/SDL2/lib"
 
 # Set PATH on amidev user
 USER amidev

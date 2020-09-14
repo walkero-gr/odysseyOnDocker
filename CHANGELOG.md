@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## odysseyOnDocker - 2020-09-11
+### Added
+- Added SDL SDK version 1.2.16 release candidate 1 for AmigaOS 4
+
 ### Changed
 - Updated gcc to 8.4.0
 - Updated MUI SDK to v5.0-2020R1
