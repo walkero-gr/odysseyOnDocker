@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2020-09-16
+### Added
+- Added the pthreads libs from the AmigaOS 4 SDK into the installation
+- Added a SDL2 example which compiles just fine. I would like to thank everyone at OS4Coding.net for their help.
+
 ## odysseyOnDocker - 2020-09-11
 ### Added
 - Added SDL SDK version 1.2.16 release candidate 1 for AmigaOS 4

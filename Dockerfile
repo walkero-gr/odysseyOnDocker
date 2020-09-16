@@ -85,11 +85,15 @@ RUN curl -fskSL "https://www.hyperion-entertainment.biz/index.php?option=com_reg
     lha -xfq2 clib2*.lha; \
     lha -xfq2 newlib*.lha; \
     lha -xfq2 base.lha; \
+    lha -xfq2 pthreads*.lha; \
     mv ./Documentation /opt/sdk/ppc-amigaos; \
     mv ./Examples /opt/sdk/ppc-amigaos; \
     mv ./Include /opt/sdk/ppc-amigaos/include; \
     mv ./newlib /opt/sdk/ppc-amigaos; \
     mv ./clib2 /opt/sdk/ppc-amigaos; \
+    mv ./Local/clib2/lib/* /opt/sdk/ppc-amigaos/clib2/lib; \
+    mv ./Local/newlib/lib/* /opt/sdk/ppc-amigaos/newlib/lib; \
+    mv ./Local/common/include/* /opt/sdk/ppc-amigaos/include/include_h; \
     rm -rf $APPC/ppc-amigaos/SDK; \
     ln -s /opt/sdk/ppc-amigaos/ $APPC/ppc-amigaos/SDK; \
     rm -rf /tmp/*;
