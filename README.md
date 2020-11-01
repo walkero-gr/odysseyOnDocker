@@ -3,7 +3,7 @@
 # odysseyOnDocker
 This is a docker image with GCC compiler for cross compiling software for AmigaOS 4. It is based on Ubuntu and has everything needed (ggc compiler, SDKs, libraries) for cross compiling your applications. It's target is to be an out of box solution for compiling Odyssey browser for AmigaOS 4, but will be able to be used for other applications as well.
 
-The purpose of this docker image is to have Odyssey browser (https://github.com/kas1e/Odyssey) compile for AmigaOS 4, and then be able other apps to be compiled as well.
+The purpose of this docker image is to have Odyssey browser (https://github.com/kas1e/Odyssey) compile for AmigaOS 4, and then be able other apps to be compiled as well. Odyssey code ready to be compiled with this docker image can be found at the fork https://github.com/walkero-gr/Odyssey and a guide on how to compile it at https://github.com/walkero-gr/Odyssey/blob/develop/BUILD_ON_DOCKER.md.
 
 ## PPC development image
 The **odysseyOnDocker:latest** image contains the following:
@@ -22,7 +22,7 @@ The **odysseyOnDocker:latest** image contains the following:
 To create a container based on this image run in the terminal:
 
 ```bash
-docker run -it --rm --name odysseyOnDocker -v "$PWD"/code:/opt/code -w /opt/code walkero/odysseyondocker:latest /bin/bash
+docker run -it --rm --name odysseyOnDocker -v ${PWD}/code:/opt/code -w /opt/code walkero/odysseyondocker:latest /bin/bash
 ```
 
 If you want to use it with **docker-compose**, you can create a *docker-compose.yml* file, with the following content:
@@ -65,7 +65,7 @@ The **odysseyondocker:latest** image has the following ENV variables set:
 
 You can set your own paths, if you want, by using environment variables on docker execution or inside the docker-compose.yml file, like:
 ```bash
-docker run -it --rm --name odysseyondocker -v "$PWD"/code:/opt/code -w /opt/code -e AOS4_SDK_INC="/your/folder/path" walkero/odysseyondocker:latest /bin/bash
+docker run -it --rm --name odysseyondocker -v ${PWD}/code:/opt/code -w /opt/code -e AOS4_SDK_INC="/your/folder/path" walkero/odysseyondocker:latest /bin/bash
 ```
 docker-compose.yml
 ```yaml
