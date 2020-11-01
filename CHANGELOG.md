@@ -1,6 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2020-09-16
+### Added
+- Added the pthreads libs from the AmigaOS 4 SDK into the installation
+- Added a SDL2 example which compiles just fine. I would like to thank everyone at OS4Coding.net for their help.
+
+## odysseyOnDocker - 2020-09-11
+### Added
+- Added SDL SDK version 1.2.16 release candidate 1 for AmigaOS 4
+
+### Changed
+- Updated gcc to 8.4.0
+- Updated MUI SDK to v5.0-2020R1
+- Updated SDL 2 SDK to 2.0.12 stable version
+- Now the image is based on walkero/docker4amigavbcc:latest-base because of common parts
+- Added amidev user and group, with ID 1000
+
 ## odysseyOnDocker - 2020-06-16
 ### Added
 - Added SDL 2 SDK version 2.0.12 release candidate 2 for AmigaOS 4
