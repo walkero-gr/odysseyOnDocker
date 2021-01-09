@@ -12,7 +12,7 @@ The **odysseyOnDocker:latest** image contains the following:
 |-------------------|--------------------------------|-----------------------------------|
 | gcc               | 8.4.0 (adtools build 8.4.0)    | https://github.com/AmigaPorts/adtools
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
-| MUI 5.x dev       | 5.0-2020R1                     | http://muidev.de/downloads
+| MUI 5.x dev       | 5.0-2020R3                     | http://muidev.de/downloads
 | AmiSSL SDK        | 4.6                            | https://github.com/jens-maus/amissl/releases/tag/4.6
 | SDL SDK           | 1.2.16-rc1                     | https://github.com/AmigaPorts/SDL/releases/tag/v1.2.16-rc1-amigaos4
 | SDL 2 SDK         | 2.0.12                         | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-amigaos4

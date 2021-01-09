@@ -39,6 +39,11 @@ RUN apt-get update && apt-get -y install \
     subversion ; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
+# TODO: Add more packages needed for timberwolf compilation. These should be merged with the above
+# RUN apt-get update && apt-get -y install \
+#     libidl-dev; \
+#     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
+
 ENV PATH="$APPC/bin:$PATH" \
     AS=$APPC/bin/ppc-amigaos-as \
     LD=$APPC/bin/ppc-amigaos-ld \
@@ -54,6 +59,7 @@ RUN ln -sf $APPC/bin/ppc-amigaos-as /usr/bin/as && \
     ln -sf $APPC/bin/ppc-amigaos-g++ /usr/bin/g++ && \
     ln -sf $APPC/bin/ppc-amigaos-ranlib /usr/bin/ranlib;
 
+# TODO: Needed for compiling the adtools
 # RUN apt update && apt install \
 #         python-pip \
 #         python3-pip; \
@@ -63,7 +69,7 @@ RUN ln -sf $APPC/bin/ppc-amigaos-as /usr/bin/as && \
 RUN mkdir -p /opt/sdk/ppc-amigaos; \
     mkdir -p /opt/code;
 
-# Compile adtools
+# TODO: Compile adtools
 # RUN cd /opt/adtools; \
 #     git config --global user.email "walkero@gmail.com"; \
 #     git config --global user.name "George Sokianos"; \
@@ -104,8 +110,8 @@ ENV AOS4_SDK_INC="/opt/sdk/ppc-amigaos/Include/include_h" \
     AOS4_CLIB_INC="/opt/sdk/ppc-amigaos/clib2/include"
 
 # Install MUI 5.0 dev
-RUN curl -fsSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R1-os4.lha" -o /tmp/MUI-5.0.lha; \
-    curl -fsSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R1-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
+RUN curl -fsSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4.lha" -o /tmp/MUI-5.0.lha; \
+    curl -fsSL "https://muidev.de/download/MUI%205.0%20-%20Release/MUI-5.0-2020R3-os4-contrib.lha" -o /tmp/MUI-5.0-contrib.lha; \
     cd /tmp; \
     lha -xfq2 MUI-5.0.lha; \
     lha -xfq2 MUI-5.0-contrib.lha; \
@@ -141,6 +147,17 @@ RUN curl -fsSL "https://github.com/AmigaPorts/SDL/releases/download/v2.0.12-amig
 
 ENV SDL2_INC="/opt/sdk/SDL2/include" \
     SDL2_LIB="/opt/sdk/SDL2/lib"
+
+# TODO: Install libCurl
+# RUN curl -fsSL "http://os4depot.net/share/development/library/misc/libcurl.lha" -o /tmp/libcurl.lha; \
+#     cd /tmp; \
+#     lha -xfq2 libcurl.lha; \
+#     mv ./SDK/Local /opt/sdk/libcurl; \
+#     rm -rf /tmp/*;
+
+# ENV LIB_CURL_INC="/opt/sdk/libcurl/common/include"
+# ENV LIB_CURL_NLIB="/opt/sdk/libcurl/newlib/lib"
+# ENV LIB_CURL_CLIB="/opt/sdk/libcurl/clib2/lib"
 
 # Set PATH on amidev user
 USER amidev
