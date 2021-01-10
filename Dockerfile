@@ -1,5 +1,4 @@
-FROM amigadev/adtools:latest as adtools-image
-
+FROM walkero/amigagccondocker:ppc-amigaos-8 as adtools-image
 FROM walkero/docker4amigavbcc:latest-base
 
 LABEL maintainer="Georgios Sokianos <walkero@gmail.com>"
@@ -12,29 +11,19 @@ RUN rm -rf /opt/vbcc;
 
 ENV APPC="/opt/ppc-amigaos"
 COPY --from=adtools-image $APPC $APPC
-# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61; \
-#     echo "deb http://dl.bintray.com/sba1/adtools-deb /" | tee -a /etc/apt/sources.list;
 
 RUN apt-get update && apt-get -y install \
-    # dpkg-dev g++-8 gcc-8 libc6-dev libc-dev \ 
-    # autoconf \
-    # automake \
     bison \
-    # build-essential \
     cmake \
     cvs \
     flex \
     gperf \
     libgmp-dev \
     libisl-dev \
-    # libmpfr6 \
     libmpc-dev \
     libmpfr-dev \
-    # libtool \
     mercurial \
     pkg-config \
-    # python2.7 \
-    # scons \
     ruby \
     subversion ; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
@@ -59,29 +48,8 @@ RUN ln -sf $APPC/bin/ppc-amigaos-as /usr/bin/as && \
     ln -sf $APPC/bin/ppc-amigaos-g++ /usr/bin/g++ && \
     ln -sf $APPC/bin/ppc-amigaos-ranlib /usr/bin/ranlib;
 
-# TODO: Needed for compiling the adtools
-# RUN apt update && apt install \
-#         python-pip \
-#         python3-pip; \
-#     pip install argcomplete; \
-#     pip3 install argcomplete; 
-
 RUN mkdir -p /opt/sdk/ppc-amigaos; \
     mkdir -p /opt/code;
-
-# TODO: Compile adtools
-# RUN cd /opt/adtools; \
-#     git config --global user.email "walkero@gmail.com"; \
-#     git config --global user.name "George Sokianos"; \
-#     git clone https://github.com/sba1/adtools .; \
-#     git submodule init; \
-#     git submodule update;
-
-# RUN gild/bin/gild clone; \
-#     gild/bin/gild checkout binutils 2.23.2; \
-#     gild/bin/gild checkout gcc 8;
-
-# RUN make -C native-build gcc-cross CROSS_PREFIX=/usr/local/amiga -j3
 
 # Install AmigaOS 4 SDK
 RUN curl -fskSL "https://www.hyperion-entertainment.biz/index.php?option=com_registration&amp;view=download&amp;format=raw&amp;file=82&amp;Itemid=82" -o /tmp/AmigaOS4-SDK.lha; \
