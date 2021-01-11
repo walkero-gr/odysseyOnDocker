@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2021-01-11
+- Added my new walkero/amigagccondocker:ppc-amigaos-8 base image
+- Added python on installation components
+- Cleared the code that was about compiling gcc 8
 ## odysseyOnDocker - 2020-09-16
 ### Added
 - Added the pthreads libs from the AmigaOS 4 SDK into the installation

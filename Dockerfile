@@ -24,6 +24,7 @@ RUN apt-get update && apt-get -y install \
     libmpfr-dev \
     mercurial \
     pkg-config \
+    python \
     ruby \
     subversion ; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
