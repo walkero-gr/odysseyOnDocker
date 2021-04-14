@@ -52,7 +52,7 @@ services:
 And then you can create and get into the container by doing the following:
 ```bash
 docker-compose up -d
-docker-compose odysseyondocker exec bash
+docker-compose exec odysseyondocker bash
 ```
 
 To compile your project you have to get into the container, inside the */opt/code/projectname* folder, which is shared with the host machine.
