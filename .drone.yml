@@ -12,7 +12,7 @@ steps:
     # cache_from:
     #   - walkero/odysseyondocker:latest-gcc8
     build_args:
-      - GCC=8
+      - GCC_VER=8
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
@@ -26,7 +26,7 @@ steps:
     # cache_from:
     #   - walkero/odysseyondocker:latest-gcc9
     build_args:
-      - GCC=9
+      - GCC_VER=9
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
@@ -40,7 +40,7 @@ steps:
     # cache_from:
     #   - walkero/odysseyondocker:latest-gcc10
     build_args:
-      - GCC=10
+      - GCC_VER=10
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
