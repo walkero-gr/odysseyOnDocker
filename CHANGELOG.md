@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## odysseyOnDocker - 2021-04-14
+- Improved the Dockerfile in places
+- Added parameter in Makefile to pass argument about the GCC version. Now there are docker images with GCC 8, 9 and 10.
+- Updated drone script to create images with different tags, based on GCC versions
+- Updated SDL SDK to v1.2.16-rc2
+- Updated SDL 2 SDK to v2.0.14-update1
+
 ## odysseyOnDocker - 2021-01-11
 - Added my new walkero/amigagccondocker:ppc-amigaos-8 base image
 - Added python on installation components

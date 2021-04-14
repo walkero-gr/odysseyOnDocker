@@ -10,12 +10,12 @@ The **odysseyOnDocker:latest** image contains the following:
 
 | app               | version                        | source
 |-------------------|--------------------------------|-----------------------------------|
-| gcc               | 8.4.0 (adtools build 8.4.0)    | https://github.com/AmigaPorts/adtools
+| gcc               | 8, 9, 10                       |
 | AmigaOS 4 SDK     | 53.30                          | http://www.hyperion-entertainment.com/
 | MUI 5.x dev       | 5.0-2020R3                     | http://muidev.de/downloads
 | AmiSSL SDK        | 4.7                            | https://github.com/jens-maus/amissl/releases/tag/4.7
-| SDL SDK           | 1.2.16-rc1                     | https://github.com/AmigaPorts/SDL/releases/tag/v1.2.16-rc1-amigaos4
-| SDL 2 SDK         | 2.0.12                         | https://github.com/AmigaPorts/SDL/releases/tag/v2.0.12-amigaos4
+| SDL SDK           | 1.2.16-rc2                     | https://github.com/AmigaPorts/SDL/releases/download/v1.2.16-rc2-amigaos4/SDL.lha
+| SDL 2 SDK         | 2.0.14-update1                 | https://github.com/AmigaPorts/SDL/releases/download/v2.0.14-update1-amigaos4/SDL2.lha
 | FlexCat           | 2.18                           | https://github.com/adtools/flexcat/releases/tag/2.18
 | lha               | v2 PMA                         | https://github.com/jca02266/lha.git
 
@@ -24,7 +24,9 @@ The **odysseyOnDocker:latest** image contains the following:
 To create a container based on this image run in the terminal:
 
 ```bash
-docker run -it --rm --name odysseyOnDocker -v ${PWD}/code:/opt/code -w /opt/code walkero/odysseyondocker:latest /bin/bash
+docker run -it --rm --name odysseyOnDocker-gcc8 -v ${PWD}/code:/opt/code -w /opt/code walkero/odysseyondocker:latest-gcc8 /bin/bash
+docker run -it --rm --name odysseyOnDocker-gcc9 -v ${PWD}/code:/opt/code -w /opt/code walkero/odysseyondocker:latest-gcc9 /bin/bash
+docker run -it --rm --name odysseyOnDocker-gcc10 -v ${PWD}/code:/opt/code -w /opt/code walkero/odysseyondocker:latest-gcc10 /bin/bash
 ```
 
 If you want to use it with **docker-compose**, you can create a *docker-compose.yml* file, with the following content:
@@ -33,8 +35,16 @@ If you want to use it with **docker-compose**, you can create a *docker-compose.
 version: '3'
 
 services:
-  odysseyondocker:
-    image: 'walkero/odysseyondocker:latest'
+  odysseyondocker-gcc8:
+    image: 'walkero/odysseyondocker:latest-gcc8'
+    volumes:
+      - './code:/opt/code'
+  odysseyondocker-gcc9:
+    image: 'walkero/odysseyondocker:latest-gcc9'
+    volumes:
+      - './code:/opt/code'
+  odysseyondocker-gcc10:
+    image: 'walkero/odysseyondocker:latest-gcc10'
     volumes:
       - './code:/opt/code'
 ```

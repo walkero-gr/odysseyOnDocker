@@ -3,14 +3,44 @@ kind: pipeline
 name: build-images
 
 steps:
-- name: build-image-latest
+- name: build-image-gcc8
   image: plugins/docker
   settings:
     repo: walkero/odysseyondocker
     tags:
-      - "latest"
-    cache_from:
-      - walkero/odysseyondocker:latest
+      - "latest-gcc8"
+    # cache_from:
+    #   - walkero/odysseyondocker:latest-gcc8
+    build_args:
+      - GCC=8
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+- name: build-image-gcc9
+  image: plugins/docker
+  settings:
+    repo: walkero/odysseyondocker
+    tags:
+      - "latest-gcc9"
+    # cache_from:
+    #   - walkero/odysseyondocker:latest-gcc9
+    build_args:
+      - GCC=9
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+- name: build-image-gcc10
+  image: plugins/docker
+  settings:
+    repo: walkero/odysseyondocker
+    tags:
+      - "latest-gcc10"
+    # cache_from:
+    #   - walkero/odysseyondocker:latest-gcc10
+    build_args:
+      - GCC=10
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
