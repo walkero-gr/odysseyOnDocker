@@ -44,7 +44,7 @@ steps:
     tags:
       - latest-gcc11-amd64
     cache_from:
-      - walkero/amigagccondocker:os4-base-gcc11-adtools-amd64
+      - walkero/odysseyondocker:latest-gcc11-amd64
     purge: true
     compress: true
     username:
@@ -82,7 +82,7 @@ steps:
     tags:
       - latest-gcc11-arm64
     cache_from:
-      - walkero/amigagccondocker:os4-base-gcc11-adtools-arm64
+      - walkero/odysseyondocker:latest-gcc11-arm64
     purge: true
     compress: true
     username:
@@ -116,8 +116,8 @@ steps:
       from_secret: DOCKERHUB_USERNAME
     password:
       from_secret: DOCKERHUB_PASSWORD
-    target: walkero/amigagccondocker:odysseyondocker-gcc11
-    template: walkero/amigagccondocker:odysseyondocker-gcc11-ARCH
+    target: walkero/odysseyondocker:latest-gcc11
+    template: walkero/odysseyondocker:latest-gcc11-ARCH
     platforms:
       - linux/amd64
       - linux/arm64
