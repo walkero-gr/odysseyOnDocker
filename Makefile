@@ -1,23 +1,20 @@
 -include env_make
 
-GCC := 8
 REPO ?= walkero/odysseyondocker
-TAG ?= latest-gcc$(GCC)
+TAG ?= latest-gcc11
 VOLUMES ?= -v "${PWD}/code":/opt/code
 WORKSPACE ?= -w /opt/code
-NAME ?= odysseyondocker-gcc$(GCC)
+NAME ?= odysseyondocker-gcc11
 
 .PHONY: build buildnc shell push logs clean release
 
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) \
-		--build-arg GCC_VER=$(GCC) .
+	docker build -t $(REPO):$(TAG) --progress plain .
 
 buildnc:
-	docker build --no-cache -t $(REPO):$(TAG) \
-		--build-arg GCC_VER=$(GCC) .
+	docker build --no-cache -t $(REPO):$(TAG) --progress plain .
 
 shell:
 	docker run -it --rm --name $(NAME) $(VOLUMES) $(WORKSPACE) $(REPO):$(TAG) /bin/bash

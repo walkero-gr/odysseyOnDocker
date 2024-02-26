@@ -1,46 +1,52 @@
----
 kind: pipeline
-name: build-images
+type: docker
+name: awsbuilders-poweron
+
+clone:
+  disable: true
 
 steps:
-- name: build-image-gcc8
+- name: start-aws-instances
+  pull: always
+  image: amazon/aws-cli
+  environment:
+    AWS_ACCESS_KEY_ID:
+      from_secret: AWS_ACCESS_KEY
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: AWS_SECRET_ACCESS_KEY
+  commands:
+    - aws ec2 start-instances --region eu-north-1 --instance-ids i-01e3d598710a23947 i-02bb3cbe63a2b3fef
+
+trigger:
+  branch:
+    include:
+    - master
+    - main
+  event:
+    include:
+    - push
+    - pull_request
+    - tag
+
+---
+kind: pipeline
+name: build-image-amd64
+
+platform:
+  arch: amd64
+  os: linux
+
+steps:
+- name: odysseyondocker-gcc11-amd64
   image: plugins/docker
   settings:
     repo: walkero/odysseyondocker
     tags:
-      - "latest-gcc8"
-    # cache_from:
-    #   - walkero/odysseyondocker:latest-gcc8
-    build_args:
-      - GCC_VER=8
-    username:
-      from_secret: DOCKERHUB_USERNAME
-    password:
-      from_secret: DOCKERHUB_PASSWORD
-- name: build-image-gcc9
-  image: plugins/docker
-  settings:
-    repo: walkero/odysseyondocker
-    tags:
-      - "latest-gcc9"
-    # cache_from:
-    #   - walkero/odysseyondocker:latest-gcc9
-    build_args:
-      - GCC_VER=9
-    username:
-      from_secret: DOCKERHUB_USERNAME
-    password:
-      from_secret: DOCKERHUB_PASSWORD
-- name: build-image-gcc10
-  image: plugins/docker
-  settings:
-    repo: walkero/odysseyondocker
-    tags:
-      - "latest-gcc10"
-    # cache_from:
-    #   - walkero/odysseyondocker:latest-gcc10
-    build_args:
-      - GCC_VER=10
+      - latest-gcc11-amd64
+    cache_from:
+      - walkero/amigagccondocker:os4-base-gcc11-adtools-amd64
+    purge: true
+    compress: true
     username:
       from_secret: DOCKERHUB_USERNAME
     password:
@@ -50,6 +56,81 @@ trigger:
   branch:
     include:
     - master
+  event:
+    include:
+    - push
+
+depends_on:
+  - awsbuilders-poweron
+
+node:
+  agents: awsbuilders
+
+---
+kind: pipeline
+name: build-image-arm64
+
+platform:
+  arch: arm64
+  os: linux
+
+steps:
+- name: odysseyondocker-gcc11-arm64
+  image: plugins/docker
+  settings:
+    repo: walkero/odysseyondocker
+    tags:
+      - latest-gcc11-arm64
+    cache_from:
+      - walkero/amigagccondocker:os4-base-gcc11-adtools-arm64
+    purge: true
+    compress: true
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+
+trigger:
+  branch:
+    include:
+    - master
+  event:
+    include:
+    - push
+
+depends_on:
+  - awsbuilders-poweron
+
+node:
+  agents: awsbuilders
+
+---
+kind: pipeline
+name: build-manifest-odysseyondocker-gcc11
+
+steps:
+- name: manifest-odysseyondocker-gcc11
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: DOCKERHUB_USERNAME
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    target: walkero/amigagccondocker:odysseyondocker-gcc11
+    template: walkero/amigagccondocker:odysseyondocker-gcc11-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm64
+
+depends_on:
+  - build-image-amd64
+  - build-image-arm64
+
+trigger:
+  branch:
+    include:
+    - master
+    - main
   event:
     include:
     - push
